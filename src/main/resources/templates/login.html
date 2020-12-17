@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" th:href="@{layui/css/layui.css}">
+    layui
+    <link rel="stylesheet" th:href="@{css/login.css}">
+</head>
+<body>
+<div class="layui-box login-box">
+    <div class="title">仓库管理系统</div>
+    <form class="layui-form" action="">
+        <div class="layui-form-item">
+            <label class="layui-form-label login-label">用户名：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="username" required lay-verify="required" placeholder="请输入用户名"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label  login-label">密&nbsp;&nbsp;码：</label>
+            <div class="layui-input-inline">
+                <input type="password" name="password" required lay-verify="required" placeholder="请输入密码"
+                       class="layui-input"/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline login-btn">
+                <button class="layui-btn layui-btn-fluid" lay-submit="" lay-filter="login">登录</button>
+            </div>
+            <div class="layui-inline login-btn">
+                <button class="layui-btn layui-btn-fluid" lay-submit="" lay-filter="register">注册</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script th:src="@{layui/layui.js}"></script>
+<script>
+    layui.use(['form', 'jquery', 'layer'], function () {
+        var $ = layui.jquery,
+            form = layui.form,
+            layer = layui.layer;
+        // form.render();
+
+        form.on('submit(login)', function (data) {
+            console.log("login")
+            console.log(data.field)
+            return false;//false：阻止表单跳转  true：表单跳转
+        });
+    })
+</script>
+</body>
+
+</html>

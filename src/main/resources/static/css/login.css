@@ -1,0 +1,58 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: url("../images/login/login_bg.jpg");
+    background-size: 100% 100%;
+    position: relative;
+    -moz-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    transform: scaleX(-1);
+
+}
+
+.login-box {
+    position: absolute;
+    width: auto;
+    height: auto;
+    padding: 20px;
+    color: #FFFFFF;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: rgba(0, 175, 255, 0.6);
+    border-radius: 15px;
+}
+
+.title {
+    margin: 20px 0;
+    font-size: 40px;
+    font-family: 华文行楷;
+}
+
+.login-label {
+    font-family: 仿宋;
+}
+
+.login-btn {
+    width: 45%;
+}
+
+.layui-input {
+    background: rgba(0, 0, 0, 0);
+    color: #FFFFFF;
+}
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+    color: #fff;
+}
+input:-moz-placeholder, textarea:-moz-placeholder {
+    color: #fff;
+}
+input::-moz-placeholder, textarea::-moz-placeholder {
+    color: #fff;
+}
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+    color: #fff;
+}
