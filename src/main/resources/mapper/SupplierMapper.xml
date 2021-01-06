@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaolei.warehousedemo.dao.SupplierMapper">
+    <resultMap id="supplier" type="com.xiaolei.warehousedemo.entity.Supplier"/>
+    <parameterMap id="supplier" type="com.xiaolei.warehousedemo.entity.Supplier"/>
+
+    <select id="getSupplierList" resultMap="supplier">
+        SELECT  * FROM supplier limit #{page},#{size}
+    </select>
+
+    <select id="getCount" resultType="int">
+        SELECT COUNT(*) FROM  supplier
+    </select>
+
+    <insert id="addSupplier" parameterType="supplier">
+        INSERT INTO supplier (s_name,s_address,s_mobile,postcode,contacts,mobile,bank,banknumber,e_mail,fax,state,createtime,updatetime) VALUES (#{s_name},#{s_address},#{s_mobile},#{postcode},#{contacts},#{mobile},#{bank},#{banknumber},#{e_mail},#{fax},#{state},#{createtime},#{updatetime})
+    </insert>
+
+    <select id="getSupplierBySName" resultMap="supplier" parameterType="String">
+        SELECT * From supplier WHERE s_name like concat('%',#{1},'%')
+    </select>
+
+    <delete id="deleteSupplierById" parameterType="int">
+         DELETE FROM supplier WHERE id=#{1}
+    </delete>
+
+    <update id="updateSupplier" parameterType="supplier">
+        UPDATE supplier SET
+        <if test="s_name!=null">s_name=#{s_name},</if>
+        <if test="s_address!=null">s_address=#{s_address},</if>
+        <if test="s_mobile!=null">s_mobile=#{s_mobile},</if>
+        <if test="postcode!=null">postcode=#{postcode},</if>
+        <if test="contacts!=null">contacts=#{contacts},</if>
+        <if test="mobile!=null">mobile=#{mobile},</if>
+        <if test="bank!=null">bank=#{bank},</if>
+        <if test="banknumber!=null">banknumber=#{banknumber},</if>
+        <if test="e_mail!=null">e_mail=#{e_mail},</if>
+        <if test="fax!=null">fax=#{fax},</if>
+        <if test="state!=null">state=#{state},</if>
+        <if test="updatetime!=null">updatetime=#{updatetime}</if>
+        WHERE id=#{id}
+    </update>
+
+</mapper>

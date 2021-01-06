@@ -1,0 +1,85 @@
+package com.xiaolei.warehousedemo.config;
+
+import com.xiaolei.warehousedemo.handler.TokenInterceptor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.concurrent.ConcurrentTaskExecutor;
+import org.springframework.web.servlet.config.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
+/**
+ * @ Program       :  com.ljnt.blog.config.WebConfiguration
+ * @ Description   :  web拦截器配置类
+ * @ Author        :  lj
+ * @ CreateDate    :  2020-1-31 23:23
+ */
+@Configuration
+public class WebConfiguration implements WebMvcConfigurer {
+
+    @Value("${file.staticAccessPath}")
+    private String staticAccessPath;
+    @Value("${file.uploadFolder}")
+    private String uploadFolder;
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler(staticAccessPath).addResourceLocations("file:" + uploadFolder);
+    }
+
+    @Autowired
+    private TokenInterceptor tokenInterceptor;
+
+    /**
+     * 解决跨域请求
+     * @param registry
+     */
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedHeaders("*")
+                .allowedMethods("*")
+                .allowedOrigins("*")
+                .allowCredentials(true);
+    }
+
+    /**
+     * 异步请求配置
+     * @param configurer
+     */
+    @Override
+    public void configureAsyncSupport(AsyncSupportConfigurer configurer) {
+        configurer.setTaskExecutor(new ConcurrentTaskExecutor(Executors.newFixedThreadPool(3)));
+        configurer.setDefaultTimeout(30000);
+    }
+
+    /**
+     * 配置拦截器、拦截路径
+     * 每次请求到拦截的路径，就会去执行拦截器中的方法
+     * @param registry
+     */
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        List<String> excludePath = new ArrayList<>();
+        //排除拦截，除了注册登录(此时还没token)，其他都拦截
+        //排除swagger
+        excludePath.add("/swagger-resources/**");
+        excludePath.add("/webjars/**");
+        excludePath.add("/v2/**");
+        excludePath.add("/swagger-ui.html/**");
+        excludePath.add("/api/User/login");     //登录
+        excludePath.add("/static/**");  //静态资源
+        excludePath.add("/assets/**");  //静态资源
+        registry.addInterceptor(tokenInterceptor)
+                .addPathPatterns("/**")
+                .excludePathPatterns(excludePath);
+        WebMvcConfigurer.super.addInterceptors(registry);
+
+    }
+
+
+}
+
