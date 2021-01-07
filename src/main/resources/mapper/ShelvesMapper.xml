@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaolei.warehousedemo.dao.ShelvesMapper">
+    <resultMap id="user" type="com.xiaolei.warehousedemo.entity.Shelves"/>
+    <parameterMap id="user" type="com.xiaolei.warehousedemo.entity.Shelves"/>
+
+
+    <select id="getShelvesBypage" resultType="shelves">
+        SELECT * FROM shelves limit #{page},#{size}
+    </select>
+
+    <select id="getShelves" resultType="shelves">
+    SELECT  * FROM shelves WHERE id=#{id}
+    </select>
+
+    <select id="getCount" resultType="int">
+        SELECT COUNT(*) FROM  shelves
+    </select>
+
+    <insert id="addShelves" parameterType="shelves">
+        INSERT INTO shelves (number,layer,column,outside,createtime,updatetime) VALUES (#{number},#{layer},#{column},#{outside},#{createtime},#{updatetime})
+    </insert>
+    <delete id="deleteShelvesById" parameterType="int">
+        DELETE FROM user WHERE id=#{1}
+    </delete>
+
+    <update id="updateShelves" parameterType="shelves">
+        UPDATE supplier SET
+        <if test="number!=null">number=#{number},</if>
+        <if test="layer!=null">layer=#{layer},</if>
+        <if test="column!=null">column=#{column},</if>
+        <if test="outside!=null">outside=#{outside},</if>
+        <if test="updatetime!=null">updatetime=#{updatetime}</if>
+        WHERE id=#{id}
+    </update>
+</mapper>

@@ -45,6 +45,21 @@ public class UserController {
         return RetResponse.makeOKRsp(userList);
     }
 
+    @ApiOperation(value = "查询用户总数")
+    @GetMapping("/getCount")
+    public RetResult<Integer> getCount(){
+        int total = userMapper.getcount();
+        return RetResponse.makeOKRsp(total);
+    }
+
+    @ApiOperation(value = "分页查询用户列表")
+    @GetMapping("/getPageUser")
+    public RetResult<List<User>> getUserBypage(int page,int size){
+        page = page-1;
+        List<User> list = userMapper.getUserBypage(page,size);
+        return RetResponse.makeOKRsp(list);
+    }
+
     @ApiOperation(value = "修改用户信息 除密码")
     @PostMapping("/updateUser")
     public RetResult<User> updateUser(@RequestBody User user) {

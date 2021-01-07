@@ -22,4 +22,7 @@ public interface UserMapper {
 
     List<User> getUserList();
 
+    int getcount();
+    List<User> getUserBypage(int page,int size);
+
 }

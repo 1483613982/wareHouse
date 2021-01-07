@@ -13,6 +13,14 @@
         WHERE username=#{1}
     </select>
 
+    <select id="getcount" resultType="int">
+    SELECT  COUNT(*) FROM user
+    </select>
+
+    <select id="getUserBypage" resultMap="user">
+        SELECT   `id`,`avatar`,`username`,`rank`,`create_time`,`update_time` FROM user limit #{page},#{size}
+    </select>
+
     <update id="updateUserById" parameterMap="user">
         UPDATE user SET
         <if test="username!=null">username=#{username},</if>
