@@ -17,7 +17,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 /* 类注解 */
-@Api(value = "文件上传接口")
+@Api(tags = {"文件接口"})
 @RestController("/api/File")
 public class FileController {
     @Value("${file.uploadFolder}")

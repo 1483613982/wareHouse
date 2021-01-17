@@ -16,10 +16,10 @@ import lombok.NoArgsConstructor;
 public class Shelves {
 
     private  int id;
-    private String number;
-    private int layer;
-    private int column;
-    private String outside;
+    private String s_number;
+    private int s_layer;
+    private int s_column;
+    private String s_outside;
     private int createtime;
     private int updatetime;
 }

@@ -10,6 +10,7 @@ import java.util.List;
 @Mapper
 @Component
 public interface ShelvesMapper {
+
     List<Shelves> getShelvesBypage(int page,int size);
 
     Shelves getShelves(int id);
@@ -21,4 +22,6 @@ public interface ShelvesMapper {
     int deleteShelvesById(int id);
 
     int updateShelves(Shelves shelves);
+
+    List<Shelves> getShelvesBySNumber(String s_number);
 }

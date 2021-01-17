@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xiaolei.warehousedemo.dao.ShelvesMapper">
-    <resultMap id="user" type="com.xiaolei.warehousedemo.entity.Shelves"/>
-    <parameterMap id="user" type="com.xiaolei.warehousedemo.entity.Shelves"/>
+    <resultMap id="shelves" type="com.xiaolei.warehousedemo.entity.Shelves"/>
+    <parameterMap id="shelves" type="com.xiaolei.warehousedemo.entity.Shelves"/>
 
 
     <select id="getShelvesBypage" resultType="shelves">
@@ -18,19 +18,24 @@
     </select>
 
     <insert id="addShelves" parameterType="shelves">
-        INSERT INTO shelves (number,layer,column,outside,createtime,updatetime) VALUES (#{number},#{layer},#{column},#{outside},#{createtime},#{updatetime})
+        INSERT INTO shelves (s_number,s_layer,s_column,s_outside,createtime,updatetime) VALUES (#{s_number},#{s_layer},#{s_column},#{s_outside},#{createtime},#{updatetime})
     </insert>
+
     <delete id="deleteShelvesById" parameterType="int">
-        DELETE FROM user WHERE id=#{1}
+        DELETE FROM shelves WHERE id=#{1}
     </delete>
 
     <update id="updateShelves" parameterType="shelves">
-        UPDATE supplier SET
-        <if test="number!=null">number=#{number},</if>
-        <if test="layer!=null">layer=#{layer},</if>
-        <if test="column!=null">column=#{column},</if>
-        <if test="outside!=null">outside=#{outside},</if>
+        UPDATE shelves SET
+        <if test="s_number!=null">s_number=#{s_number},</if>
+        <if test="s_layer!=null">s_layer=#{s_layer},</if>
+        <if test="s_column!=null">s_column=#{s_column},</if>
+        <if test="s_outside!=null">s_outside=#{s_outside},</if>
         <if test="updatetime!=null">updatetime=#{updatetime}</if>
         WHERE id=#{id}
     </update>
+
+    <select id="getShelvesBySNumber" resultMap="shelves" parameterType="String">
+        SELECT * From shelves WHERE s_number like concat('%',#{1},'%')
+    </select>
 </mapper>
