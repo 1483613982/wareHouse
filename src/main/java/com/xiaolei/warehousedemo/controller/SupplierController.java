@@ -1,13 +1,12 @@
 package com.xiaolei.warehousedemo.controller;
 
-import com.xiaolei.warehousedemo.dao.SupplierMapper;
+import com.xiaolei.warehousedemo.mapper.SupplierMapper;
 import com.xiaolei.warehousedemo.entity.Supplier;
 import com.xiaolei.warehousedemo.ret.RetResponse;
 import com.xiaolei.warehousedemo.ret.RetResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,6 +37,14 @@ public class SupplierController {
         int count = supplierMapper.getCount();
         return  RetResponse.makeOKRsp(count);
     }
+
+    @ApiOperation(value = "获取所有供应商")
+    @GetMapping("/getAllSuppler")
+    public RetResult<List<Supplier>> getAllSuppler(){
+        List<Supplier> list = supplierMapper.getAllSuppler();
+        return  RetResponse.makeOKRsp(list);
+    }
+
 
     @ApiOperation(value = "添加供应商")
     @PostMapping("/addSupplier")

@@ -1,20 +1,21 @@
 #Spring-Mysql 阿里云
-#spring:
-#  datasource:
-#    password: Ljh0611.
-#    username: root
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://47.101.134.252:3306/warehouse?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&autoReconnect=true&createDatabaseIfNotExist=true
-
-#Spring-Mysql 本地
 spring:
   datasource:
-    password: 123456
+    password: Ljh0611.
     username: root
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/warehouse?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&autoReconnect=true&createDatabaseIfNotExist=true
+    url: jdbc:mysql://47.101.134.252:3306/warehouse?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&autoReconnect=true&createDatabaseIfNotExist=true
+
+#Spring-Mysql 本地
+#spring:
+#  datasource:
+#    password: 123456
+#    username: root
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://127.0.0.1:3306/warehouse?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&autoReconnect=true&createDatabaseIfNotExist=true
 
 
 file:
   staticAccessPath: /static/upload/img/** # 静态资源对外暴露的访问路径
-  uploadFolder: E:/毕业设计/upload/ #文件上传目录（注意Linux和Windows上的目录结构不同）
+  uploadFolder: /root/usr/warehouse/upload/ #文件上传目录（注意Linux和Windows上的目录结构不同）
+  #  uploadFolder: E:/毕业设计/upload/ #文件上传目录（注意Linux和Windows上的目录结构不同）

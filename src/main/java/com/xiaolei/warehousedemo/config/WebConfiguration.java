@@ -13,10 +13,9 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 /**
- * @ Program       :  com.ljnt.blog.config.WebConfiguration
  * @ Description   :  web拦截器配置类
- * @ Author        :  lj
- * @ CreateDate    :  2020-1-31 23:23
+ * @ Author        :  ljh
+ * @ CreateDate    :  2020-10-31 23:23
  */
 @Configuration
 public class WebConfiguration implements WebMvcConfigurer {

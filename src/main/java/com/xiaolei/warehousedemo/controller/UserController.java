@@ -1,19 +1,15 @@
 package com.xiaolei.warehousedemo.controller;
 
-import com.auth0.jwt.algorithms.Algorithm;
-import com.xiaolei.warehousedemo.dao.UserMapper;
+import com.xiaolei.warehousedemo.mapper.UserMapper;
 import com.xiaolei.warehousedemo.entity.User;
 import com.xiaolei.warehousedemo.ret.RetResponse;
 import com.xiaolei.warehousedemo.ret.RetResult;
 import com.xiaolei.warehousedemo.utils.TokenUtil;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

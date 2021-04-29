@@ -1,24 +1,18 @@
 package com.xiaolei.warehousedemo.controller;
 
-import com.xiaolei.warehousedemo.dao.ShelvesMapper;
-import com.xiaolei.warehousedemo.dao.UserMapper;
+import com.xiaolei.warehousedemo.mapper.ShelvesMapper;
 import com.xiaolei.warehousedemo.entity.Shelves;
-import com.xiaolei.warehousedemo.entity.Supplier;
-import com.xiaolei.warehousedemo.entity.User;
 import com.xiaolei.warehousedemo.ret.RetResponse;
 import com.xiaolei.warehousedemo.ret.RetResult;
-import com.xiaolei.warehousedemo.utils.TokenUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /* 类注解 */
-@Api(tags = {"仓库接口"})
+@Api(tags = {"货架管理"})
 @RequestMapping("/api/Shelves")
 @RestController
 public class ShelvesController {
@@ -90,9 +84,16 @@ public class ShelvesController {
     }
 
     @ApiOperation(value = "模糊查询")
-    @GetMapping("getShelvesBySNumber")
+    @GetMapping("/getShelvesBySNumber")
     public RetResult<List<Shelves>> getShelvesBySNumber(String s_number) {
-        List<Shelves> list = shelvesMapper.getShelvesBySNumber(s_number);
+        List<Shelves> list = shelvesMapper.getShelvesListBySNumber(s_number);
+        return RetResponse.makeOKRsp(list);
+    }
+
+    @ApiOperation(value = "获得所有的货架")
+    @GetMapping("/getAllShelves")
+    public RetResult<List<Shelves>> getAllShelves() {
+        List<Shelves> list = shelvesMapper.getAllShelves();
         return RetResponse.makeOKRsp(list);
     }
 

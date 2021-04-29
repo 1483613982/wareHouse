@@ -1,4 +1,4 @@
-package com.xiaolei.warehousedemo.dao;
+package com.xiaolei.warehousedemo.mapper;
 
 import com.xiaolei.warehousedemo.entity.User;
 import org.apache.ibatis.annotations.Mapper;

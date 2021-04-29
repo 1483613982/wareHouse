@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xiaolei.warehousedemo.dao.UserMapper">
+<mapper namespace="com.xiaolei.warehousedemo.mapper.UserMapper">
     <resultMap id="user" type="com.xiaolei.warehousedemo.entity.User"/>
     <parameterMap id="user" type="com.xiaolei.warehousedemo.entity.User"/>
     <select id="findUser" parameterType="String" resultMap="user">
@@ -18,12 +18,13 @@
     </select>
 
     <select id="getUserBypage" resultMap="user">
-        SELECT   `id`,`avatar`,`username`,`rank`,`create_time`,`update_time` FROM user limit #{page},#{size}
+        SELECT   `id`,`avatar`,`username`,`usernick`,`rank`,`create_time`,`update_time` FROM user limit #{page},#{size}
     </select>
 
     <update id="updateUserById" parameterMap="user">
         UPDATE user SET
         <if test="username!=null">username=#{username},</if>
+        <if test="usernick!=null">usernick=#{usernick},</if>
         <if test="avatar!=null">avatar=#{avatar},</if>
         <if test="rank!=null">rank=#{rank},</if>
         update_time=now()
@@ -36,10 +37,11 @@
 
     <!-- 使用alias自定义的parameterType-->
     <insert id="saveUser" parameterType="user">
-        INSERT INTO user (avatar,password,username,rank,create_time,update_time) VALUES (#{avatar},#{password},#{username},#{rank},now(), now())
+        INSERT INTO user (avatar,password,username,usernick,rank,create_time,update_time)
+        VALUES (#{avatar},#{password},#{username},#{usernick},#{rank},now(), now())
     </insert>
 
     <select id="getUserList" resultMap="user">
-        SELECT  `id`,`avatar`,`username`,`rank`,`create_time`,`update_time` FROM user
+        SELECT  `id`,`avatar`,`username`, `usernick`,`rank`,`create_time`,`update_time` FROM user
     </select>
 </mapper>

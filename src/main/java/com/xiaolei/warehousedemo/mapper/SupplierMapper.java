@@ -1,4 +1,4 @@
-package com.xiaolei.warehousedemo.dao;
+package com.xiaolei.warehousedemo.mapper;
 
 import com.xiaolei.warehousedemo.entity.Supplier;
 import org.apache.ibatis.annotations.Mapper;
@@ -11,6 +11,8 @@ import java.util.List;
 public interface SupplierMapper {
 
     List<Supplier> getSupplierList(int page,int size);
+
+    List<Supplier> getAllSuppler();
 
     int addSupplier(Supplier supplier);
 

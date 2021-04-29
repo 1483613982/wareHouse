@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaolei.warehousedemo.mapper.OrderPurchaseMapper">
+    <resultMap id="orderPurchase" type="com.xiaolei.warehousedemo.entity.OrderPurchase"/>
+    <parameterMap id="orderPurchase" type="com.xiaolei.warehousedemo.entity.OrderPurchase"/>
+
+
+    <select id="getOrderPurchaseList" resultType="orderPurchase">
+        SELECT * FROM order_purchase
+        <if test="goodsname!=null">  WHERE goodsname like concat('%',#{goodsname},'%')</if>
+        limit #{page},#{size}
+    </select>
+
+    <select id="getOrderPurchase" resultType="orderPurchase">
+    SELECT  * FROM order_purchase WHERE id=#{id}
+    </select>
+
+    <select id="getCount" resultType="int">
+        SELECT COUNT(*) FROM  order_purchase
+    </select>
+
+    <insert id="addOrderPurchase" parameterType="orderPurchase">
+        INSERT INTO order_purchase (supplier,goodsname,goodsimgurl,price,content,norms,intime,inNumber,state,createtime,updatetime)
+        VALUES (#{supplier},#{goodsname},#{goodsimgurl},#{price},#{content},#{norms},#{intime},#{inNumber},#{state},#{createtime},#{updatetime})
+    </insert>
+
+    <delete id="deleteOrderPurchasenById" parameterType="int">
+        DELETE FROM order_purchase WHERE id=#{1}
+    </delete>
+
+    <update id="updateOrderPurchasen" parameterType="orderPurchase">
+        UPDATE order_purchase SET
+        <if test="supplier!=null">supplier=#{supplier},</if>
+        <if test="goodsname!=null">goodsname=#{goodsname},</if>
+        <if test="goodsimgurl!=null">goodsimgurl=#{goodsimgurl},</if>
+        <if test="price!=null">price=#{price},</if>
+        <if test="content!=null">content=#{content},</if>
+        <if test="norms!=null">norms=#{norms},</if>
+        <if test="intime!=null">intime=#{intime},</if>
+        <if test="inNumber!=null">inNumber=#{inNumber},</if>
+        <if test="state!=null">state=#{state},</if>
+        <if test="updatetime!=null">updatetime=#{updatetime}</if>
+        WHERE id=#{id}
+    </update>
+
+</mapper>

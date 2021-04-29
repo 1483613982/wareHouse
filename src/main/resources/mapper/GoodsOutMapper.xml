@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaolei.warehousedemo.mapper.GoodsOutMapper">
+    <resultMap id="goodsOut" type="com.xiaolei.warehousedemo.entity.GoodsOut"/>
+    <parameterMap id="goodsOut" type="com.xiaolei.warehousedemo.entity.GoodsOut"/>
+
+
+    <select id="getGoodsOutBypage" resultType="goodsOut">
+        SELECT * FROM goods_out limit #{page},#{size}
+    </select>
+
+    <select id="getGoodsOut" resultType="goodsOut">
+    SELECT  * FROM goods_out WHERE id=#{id}
+    </select>
+
+    <select id="getCount" resultType="int">
+        SELECT COUNT(*) FROM  goods_out
+    </select>
+
+    <insert id="addGoodsOut" parameterType="goodsOut">
+        INSERT INTO goods_out (goodname,supplier,outNumber,outShelves,outtime,operator,remarks)
+        VALUES (#{goodname},#{supplier},#{outNumber},#{outShelves},#{outtime},#{operator},#{remarks})
+    </insert>
+
+    <delete id="deleteGoodsOutById" parameterType="int">
+        DELETE FROM goods_out WHERE id=#{1}
+    </delete>
+
+    <update id="updateGoodsOut" parameterType="goodsOut">
+        UPDATE goods_out SET
+        <if test="goodname!=null">goodname=#{goodname},</if>
+        <if test="supplier!=null">supplier=#{supplier},</if>
+        <if test="outNumber!=null">outNumber=#{outNumber},</if>
+        <if test="outShelves!=null">outShelves=#{outShelves},</if>
+        <if test="outtime!=null">outtime=#{outtime},</if>
+        <if test="operator!=null">operator=#{operator},</if>
+        <if test="remarks!=null">remarks=#{remarks}</if>
+        WHERE id=#{id}
+    </update>
+
+    <select id="getGoodsOutByGoodsName" resultMap="goodsOut" parameterType="String">
+        SELECT * From goods_out WHERE goodname like concat('%',#{1},'%')
+    </select>
+</mapper>

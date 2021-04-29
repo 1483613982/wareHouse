@@ -24,7 +24,7 @@ public class Supplier {
     private String banknumber;
     private String e_mail;
     private String fax;
-    private int state;
+    private String state;
     private int createtime;
     private int updatetime;
 

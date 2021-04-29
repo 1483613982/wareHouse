@@ -15,6 +15,13 @@
         <typeAlias alias="user" type="com.xiaolei.warehousedemo.entity.User"/>
         <typeAlias alias="supplier" type="com.xiaolei.warehousedemo.entity.Supplier"/>
         <typeAlias alias="shelves" type="com.xiaolei.warehousedemo.entity.Shelves"/>
+        <typeAlias alias="goods" type="com.xiaolei.warehousedemo.entity.Goods"/>
+        <typeAlias alias="goodsOut" type="com.xiaolei.warehousedemo.entity.GoodsOut"/>
+        <typeAlias alias="goodsIn" type="com.xiaolei.warehousedemo.entity.GoodsIn"/>
+        <typeAlias alias="orderPurchase" type="com.xiaolei.warehousedemo.entity.OrderPurchase"/>
+        <typeAlias alias="orderSale" type="com.xiaolei.warehousedemo.entity.OrderSale"/>
+        <typeAlias alias="notice" type="com.xiaolei.warehousedemo.entity.Notice"/>
+
     </typeAliases>
 
 </configuration>
